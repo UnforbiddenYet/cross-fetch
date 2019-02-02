@@ -1,0 +1,9 @@
+#!/bin/bash
+# This task will only run on TravisCI when a prerelease passes the "script" stage.
+
+export IS_PRERELEASE=^v\d+\.\d+(\.\d+)?(-\S*)?$
+
+if [[ $TRAVIS_TAG =~ $IS_PRERELEASE ]]; then
+  npm version ${TRAVIS_TAG/-alpha} &&
+  git push --follow-tags # Needs Github permission for TravisCI
+fi

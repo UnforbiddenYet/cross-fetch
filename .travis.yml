@@ -1,8 +1,5 @@
 sudo: false
 language: node_js
-# branches:
-#   only:
-#   - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 before_script:
 - make travis-env
 - npm install --prod
@@ -11,6 +8,8 @@ script:
 - make test
 - make cov
 - make sauce
+# after_script:
+# - ./tasks/release
 deploy:
   provider: npm
   email: lquixada@gmail.com
